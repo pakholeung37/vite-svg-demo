@@ -1,27 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div>
+    <p>svg</p>
+    <SnakeSvg
+      style="display: inline-block; width: 30px; height: 30px; fill: red"
+    />
+    <Sub />
+    <!-- <svg style="fill: red"><use :href="`#${SnakeSvg}`"></use></svg> -->
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import SnakeSvg from "./assets/snake.svg";
+import Sub from "./Sub.vue";
 
-export default defineComponent({
-  name: 'App',
+console.log(SnakeSvg);
+export default {
+  name: "App",
   components: {
-    HelloWorld
-  }
-})
+    SnakeSvg,
+    Sub,
+  },
+  data() {
+    return {
+      // SnakeSvg,
+    };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.svg-container-1 {
+  fill: red;
+  color: red;
 }
 </style>
