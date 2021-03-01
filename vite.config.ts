@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import { createVuePlugin } from "vite-plugin-vue2";
 import createSvgSpritePlugin from "vite-plugin-svg-sprite";
-import createSvgComponentPlugin from "./build/vite-svg-loader";
+import { createSvgPlugin } from "vite-plugin-vue2-svg";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,6 +11,7 @@ export default defineConfig({
     //   symbolId: "icon-[name]-[hash]",
     // }),
     // * debug
-    createSvgComponentPlugin({}),
+    // createSvgComponentPlugin({}),
+    createSvgPlugin(),
   ],
 });

@@ -1,21 +1,33 @@
 import { readFileSync } from "fs";
-import SVGO, { Options } from "svgo";
+import { basename, extname } from "path";
+import SVGO from "svgo";
 import { Plugin } from "vite";
-import { compileTemplate } from "@vue/component-compiler-utils";
-import compiler from "vue-template-compiler";
+import { compileTemplate, parse } from "@vue/component-compiler-utils";
+import * as compiler from "vue-template-compiler";
 
 function compileSvg(svg, id: string): string {
-  let code = compileTemplate({
-    compiler,
+  const template = parse({
     source: `
-    <template>
-      ${svg}
-    </template>
-  `,
-    filename: id,
-  }).code;
+      <template>
+        ${svg}
+      </template>
+    `,
+    compiler: compiler as any,
+    filename: `${basename(id)}.vue`,
+  }).template;
 
-  return code;
+  const result = compileTemplate({
+    compiler: compiler as any,
+    source: template.content,
+    filename: `${basename(id)}.vue`,
+  });
+  console.log(result);
+  return `
+    ${result.code}
+    export default {
+      render: render,    
+    }
+  `;
 }
 
 async function optimizeSvg(svgo, content, path) {

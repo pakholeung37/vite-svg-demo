@@ -1,23 +1,24 @@
 <template>
   <div>
     <p>svg</p>
-    <SnakeSvg
-      style="display: inline-block; width: 30px; height: 30px; fill: red"
-    />
-    <Sub />
+    <SnakeSvg style="fill: red" width="200" height="200" />
+    <MsgSvg />
+    <!-- <Sub /> -->
     <!-- <svg style="fill: red"><use :href="`#${SnakeSvg}`"></use></svg> -->
   </div>
 </template>
 
 <script lang="ts">
 import SnakeSvg from "./assets/snake.svg";
+import MsgSvg from "./assets/msg.svg";
+
 import Sub from "./Sub.vue";
 
-console.log(SnakeSvg);
 export default {
   name: "App",
   components: {
     SnakeSvg,
+    MsgSvg,
     Sub,
   },
   data() {
